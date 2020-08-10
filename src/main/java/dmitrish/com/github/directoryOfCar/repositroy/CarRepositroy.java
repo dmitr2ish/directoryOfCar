@@ -29,7 +29,8 @@ public interface CarRepositroy {
 
     int countOfCarOlderYear(Integer year);
 
-    int countOfCarUnderYear(Integer year);
+    int countOfCarUntilYear(Integer year);
 
+    //Checking by license plate in base
     boolean isExist(Car car);
 }

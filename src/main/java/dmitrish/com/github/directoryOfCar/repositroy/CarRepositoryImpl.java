@@ -6,14 +6,17 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Repository
 public class CarRepositoryImpl implements CarRepositroy {
 
     final private EntityManager entityManager;
+    final private Logger log;
 
     @Autowired
     public CarRepositoryImpl(EntityManager entityManager) {
+        this.log = Logger.getLogger(CarRepositoryImpl.class.getName());
         this.entityManager = entityManager;
     }
 
@@ -56,12 +59,23 @@ public class CarRepositoryImpl implements CarRepositroy {
 
     @Override
     public void add(Car car) {
-        entityManager.persist(car);
+        try {
+            entityManager.persist(car);
+            entityManager.flush();
+        } catch (Exception e) {
+            log.warning("EXCEPTION IN ADD METHOD, GAME: " + car.getId() + ", " + e);
+        }
     }
 
     @Override
     public Car update(Car car) {
-        return entityManager.merge(car);
+        try {
+            entityManager.merge(car);
+            entityManager.flush();
+        } catch (Exception e) {
+            log.warning("EXCEPTION IN UPDATE METHOD, GAME: " + car.getId() + ", " + e);
+        }
+        return car;
     }
 
     @Override
@@ -88,14 +102,15 @@ public class CarRepositoryImpl implements CarRepositroy {
     }
 
     @Override
-    public int countOfCarUnderYear(Integer year) {
+    public int countOfCarUntilYear(Integer year) {
         return entityManager.createQuery("select count(c) from Car c where c.yearOfManufacture > :year")
                 .executeUpdate();
     }
 
     @Override
     public boolean isExist(Car car) {
-        return !entityManager.createQuery("select count(c) from Car c")
+        return !entityManager.createQuery("select count(c) from Car c where c.licensePlate = :license")
+                .setParameter("license", car.getLicensePlate())
                 .getSingleResult()
                 .equals(0L);
     }

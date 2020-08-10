@@ -22,7 +22,6 @@ public class MainController {
     @GetMapping(value = "/")
     public ModelAndView getMainPage() {
         ModelAndView mav = new ModelAndView("main");
-        mav.addObject("newCar", new Car());
         return mav.addObject("todayDate", LocalDate.now());
     }
 }

@@ -45,23 +45,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public boolean add(Car car) {
-        if (carRepositroy.isExist(car)) {
-            return false;
-        } else {
-            carRepositroy.add(car);
-            return true;
-        }
+    public void add(Car car) {
+        carRepositroy.add(car);
     }
 
     @Override
     public Car update(Car car) {
-        if (carRepositroy.isExist(car)) {
-            return carRepositroy.update(car);
-
-        } else {
-            return null;
-        }
+return carRepositroy.update(car);
     }
 
     @Override
@@ -85,7 +75,12 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public int countOfCarUnderYear(Integer year) {
-        return carRepositroy.countOfCarUnderYear(year);
+    public int countOfCarUntilYear(Integer year) {
+        return carRepositroy.countOfCarUntilYear(year);
+    }
+
+    @Override
+    public boolean isExist(Car car) {
+        return carRepositroy.isExist(car);
     }
 }

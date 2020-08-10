@@ -117,7 +117,6 @@
                                         <div class="row justify-content-center">
                                             <div class="col-4">
                                                 <form action="/api/car/add" id="addForm" method="post">
-
                                                     <div class="form-group text-center">
                                                         <label for="addLicensePlate"
                                                                class="font-weight-bold">License plate
@@ -169,7 +168,7 @@
 
                                                         <input type="number"
                                                                class="form-control"
-                                                               name="year"
+                                                               name="yearOfManufacture"
                                                                id="addYear">
                                                     </div>
 
@@ -281,32 +280,32 @@
 
                     <div class="form-group">
                         <label for="deleteLicensePlate" class="col-form-label">License plate</label>
-                        <input type="text" class="form-control" id="deleteLicensePlate">
+                        <input type="text" class="form-control" id="deleteLicensePlate"  readonly="readonly">
                     </div>
 
                     <div class="form-group">
                         <label for="deleteBrand" class="col-form-label">Brand</label>
-                        <input type="text" class="form-control" id="deleteBrand">
+                        <input type="text" class="form-control" id="deleteBrand"  readonly="readonly">
                     </div>
 
                     <div class="form-group">
                         <label for="deleteModel" class="col-form-label">Model</label>
-                        <input type="text" class="form-control" id="deleteModel">
+                        <input type="text" class="form-control" id="deleteModel"  readonly="readonly">
                     </div>
 
                     <div class="form-group">
                         <label for="deleteColor" class="col-form-label">Color</label>
-                        <input type="text" class="form-control" id="deleteColor">
+                        <input type="text" class="form-control" id="deleteColor"  readonly="readonly">
                     </div>
 
                     <div class="form-group">
                         <label for="deleteYear" class="col-form-label">Year</label>
-                        <input type="number" class="form-control" id="deleteYear">
+                        <input type="number" class="form-control" id="deleteYear"  readonly="readonly">
                     </div>
 
                     <div class="form-group">
                         <label for="deletePrice" class="col-form-label">Price</label>
-                        <input type="number" class="form-control" id="deletePrice">
+                        <input type="number" class="form-control" id="deletePrice" readonly="readonly">
                     </div>
                 </form>
             </div>
@@ -328,6 +327,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+<script src="js/MyScript.js"></script>
 
 </body>
 </html>
