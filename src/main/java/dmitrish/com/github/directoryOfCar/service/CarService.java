@@ -1,11 +1,10 @@
-package dmitrish.com.github.directoryOfCar.repositroy;
+package dmitrish.com.github.directoryOfCar.service;
 
 import dmitrish.com.github.directoryOfCar.entity.Car;
 
-import java.time.LocalDate;
 import java.util.List;
 
-public interface CarRepositroy {
+public interface CarService {
 
     List<Car> getAll();
 
@@ -17,7 +16,7 @@ public interface CarRepositroy {
 
     Car getById(Long id);
 
-    void add(Car car);
+    boolean add(Car car);
 
     Car update(Car car);
 
@@ -30,6 +29,4 @@ public interface CarRepositroy {
     int countOfCarOlderYear(Integer year);
 
     int countOfCarUnderYear(Integer year);
-
-    boolean isExist(Car car);
 }

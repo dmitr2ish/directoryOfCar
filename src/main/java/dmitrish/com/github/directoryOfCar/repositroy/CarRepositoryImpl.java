@@ -92,4 +92,11 @@ public class CarRepositoryImpl implements CarRepositroy {
         return entityManager.createQuery("select count(c) from Car c where c.yearOfManufacture > :year")
                 .executeUpdate();
     }
+
+    @Override
+    public boolean isExist(Car car) {
+        return !entityManager.createQuery("select count(c) from Car c")
+                .getSingleResult()
+                .equals(0L);
+    }
 }
