@@ -45,8 +45,8 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void add(Car car) {
-        carRepositroy.add(car);
+    public boolean add(Car car) {
+        return carRepositroy.add(car);
     }
 
     @Override
@@ -65,18 +65,8 @@ return carRepositroy.update(car);
     }
 
     @Override
-    public int countOfNotes() {
+    public Long countOfNotes() {
         return carRepositroy.countOfNotes();
-    }
-
-    @Override
-    public int countOfCarOlderYear(Integer year) {
-        return carRepositroy.countOfCarOlderYear(year);
-    }
-
-    @Override
-    public int countOfCarUntilYear(Integer year) {
-        return carRepositroy.countOfCarUntilYear(year);
     }
 
     @Override

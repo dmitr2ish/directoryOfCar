@@ -22,6 +22,7 @@ public class MainController {
     @GetMapping(value = "/")
     public ModelAndView getMainPage() {
         ModelAndView mav = new ModelAndView("main");
+        mav.addObject("countOfNotes", carService.countOfNotes());
         return mav.addObject("todayDate", LocalDate.now());
     }
 }

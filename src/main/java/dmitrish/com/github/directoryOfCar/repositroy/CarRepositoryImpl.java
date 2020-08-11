@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -58,12 +59,14 @@ public class CarRepositoryImpl implements CarRepositroy {
     }
 
     @Override
-    public void add(Car car) {
+    public boolean add(Car car){
         try {
             entityManager.persist(car);
             entityManager.flush();
+            return true;
         } catch (Exception e) {
             log.warning("EXCEPTION IN ADD METHOD, GAME: " + car.getId() + ", " + e);
+            return false;
         }
     }
 
@@ -74,6 +77,7 @@ public class CarRepositoryImpl implements CarRepositroy {
             entityManager.flush();
         } catch (Exception e) {
             log.warning("EXCEPTION IN UPDATE METHOD, GAME: " + car.getId() + ", " + e);
+            return null;
         }
         return car;
     }
@@ -90,21 +94,9 @@ public class CarRepositoryImpl implements CarRepositroy {
     }
 
     @Override
-    public int countOfNotes() {
-        return entityManager.createQuery("select count(c) from Car c")
-                .executeUpdate();
-    }
-
-    @Override
-    public int countOfCarOlderYear(Integer year) {
-        return entityManager.createQuery("select count(c) from Car c where c.yearOfManufacture < :year")
-                .executeUpdate();
-    }
-
-    @Override
-    public int countOfCarUntilYear(Integer year) {
-        return entityManager.createQuery("select count(c) from Car c where c.yearOfManufacture > :year")
-                .executeUpdate();
+    public Long countOfNotes() {
+        return (Long) entityManager.createQuery("select count(c) from Car c")
+                .getSingleResult();
     }
 
     @Override

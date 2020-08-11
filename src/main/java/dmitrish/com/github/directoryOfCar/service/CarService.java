@@ -16,7 +16,7 @@ public interface CarService {
 
     Car getById(Long id);
 
-    void add(Car car);
+    boolean add(Car car);
 
     Car update(Car car);
 
@@ -24,11 +24,7 @@ public interface CarService {
 
     void deleteAll();
 
-    int countOfNotes();
-
-    int countOfCarOlderYear(Integer year);
-
-    int countOfCarUntilYear(Integer year);
+    Long countOfNotes();
 
     boolean isExist(Car car);
 }

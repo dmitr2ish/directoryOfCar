@@ -23,11 +23,9 @@ public class RestControllerCar {
 
     @PostMapping(value = "/add")
     public ResponseEntity<?> addCar(@RequestBody Car car) {
-        if (!carService.isExist(car)) {
-            carService.add(car);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        return new ResponseEntity<>(car.getLicensePlate() + " already exist in base", HttpStatus.BAD_REQUEST);
+        return (carService.add(car))
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping(value = "/list")
@@ -55,8 +53,9 @@ public class RestControllerCar {
         fromBase.setColor(car.getColor());
         fromBase.setPrice(car.getPrice());
         fromBase.setYearOfManufacture(car.getYearOfManufacture());
-        carService.update(fromBase);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return (carService.update(fromBase) != null)
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/delete")
@@ -68,29 +67,5 @@ public class RestControllerCar {
             carService.delete(car);
             return new ResponseEntity<>(HttpStatus.OK);
         }
-    }
-
-    @GetMapping("/stat/notes")
-    public ResponseEntity<Integer> getCountOfNotes() {
-        int count = carService.countOfNotes();
-        return (count != 0)
-                ? new ResponseEntity<>(count, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @GetMapping("/stat/notes/older/{year}")
-    public ResponseEntity<Integer> getCountOfCarOlderYear(@PathVariable(value = "year") Integer year) {
-        int count = carService.countOfCarOlderYear(year);
-        return (count != 0)
-                ? new ResponseEntity<>(count, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @GetMapping("/stat/notes/until/{year}")
-    public ResponseEntity<Integer> getCountOfCarUntilYear(@PathVariable(value = "year") Integer year) {
-        int count = carService.countOfCarUntilYear(year);
-        return (count != 0)
-                ? new ResponseEntity<>(count, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

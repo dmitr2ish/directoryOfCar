@@ -19,14 +19,10 @@
         <div class="bg-dark p-4">
             <h4 class="text-white">Directory of car</h4>
             <div class="text-muted">
-                <p>Hello, its my directory of car. In middle you seeing three buttons.</p>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                    nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-                    lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure
-                    dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore
-                    eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui
-                    blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+                <p>Hello, its my directory of car.</p>
+                <p>This service is called "Directory of car". You can add, edit, or delete a car. Thanks to the AJAX
+                    request, you can view update in table without reloading the page. Button "Get base statistics"
+                    showing by thymleaf, how much records in base.
                 </p>
             </div>
         </div>
@@ -38,6 +34,21 @@
         </button>
         <div class="col">
             <h6 style="color: #fff">Today: <span th:text="${todayDate}"></span></h6>
+        </div>
+
+        <!-- Default dropleft button -->
+        <div class="btn-group dropleft">
+            <button type="button"
+                    class="btn btn-secondary dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    id="reset">
+                Get base statistic
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <span>Count of records: <span th:text="${countOfNotes}"></span></span>
+            </div>
         </div>
     </nav>
 </div>
@@ -217,7 +228,7 @@
                 <form action="/api/car/update/" class="text-center" id="editForm" method="put">
                     <div class="form-group">
                         <label for="editId" class="col-form-label">Id</label>
-                        <input type="text" class="form-control" id="editId" readonly="readonly">
+                        <input type="number" class="form-control" id="editId" readonly="readonly">
                     </div>
 
                     <div class="form-group">
@@ -280,27 +291,27 @@
 
                     <div class="form-group">
                         <label for="deleteLicensePlate" class="col-form-label">License plate</label>
-                        <input type="text" class="form-control" id="deleteLicensePlate"  readonly="readonly">
+                        <input type="text" class="form-control" id="deleteLicensePlate" readonly="readonly">
                     </div>
 
                     <div class="form-group">
                         <label for="deleteBrand" class="col-form-label">Brand</label>
-                        <input type="text" class="form-control" id="deleteBrand"  readonly="readonly">
+                        <input type="text" class="form-control" id="deleteBrand" readonly="readonly">
                     </div>
 
                     <div class="form-group">
                         <label for="deleteModel" class="col-form-label">Model</label>
-                        <input type="text" class="form-control" id="deleteModel"  readonly="readonly">
+                        <input type="text" class="form-control" id="deleteModel" readonly="readonly">
                     </div>
 
                     <div class="form-group">
                         <label for="deleteColor" class="col-form-label">Color</label>
-                        <input type="text" class="form-control" id="deleteColor"  readonly="readonly">
+                        <input type="text" class="form-control" id="deleteColor" readonly="readonly">
                     </div>
 
                     <div class="form-group">
                         <label for="deleteYear" class="col-form-label">Year</label>
-                        <input type="number" class="form-control" id="deleteYear"  readonly="readonly">
+                        <input type="number" class="form-control" id="deleteYear" readonly="readonly">
                     </div>
 
                     <div class="form-group">

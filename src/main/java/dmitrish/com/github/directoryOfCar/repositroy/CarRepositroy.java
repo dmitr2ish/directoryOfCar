@@ -2,6 +2,7 @@ package dmitrish.com.github.directoryOfCar.repositroy;
 
 import dmitrish.com.github.directoryOfCar.entity.Car;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface CarRepositroy {
 
     Car getById(Long id);
 
-    void add(Car car);
+    boolean add(Car car);
 
     Car update(Car car);
 
@@ -25,11 +26,7 @@ public interface CarRepositroy {
 
     void deleteAll();
 
-    int countOfNotes();
-
-    int countOfCarOlderYear(Integer year);
-
-    int countOfCarUntilYear(Integer year);
+    Long countOfNotes();
 
     //Checking by license plate in base
     boolean isExist(Car car);

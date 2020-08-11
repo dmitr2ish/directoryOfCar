@@ -4,13 +4,17 @@ $(function () {
     $('#save').on('click', event => saveCar(event));
     $('#edit').on('click', event => editCar(event));
     $('#delete').on('click', event => deleteCar(event));
+    document.getElementById('reset').onmouseover = function () {
+        location.reload(); //update base statistic
+    }
 })
+
 
 function editCar(e) {
     e.preventDefault();
 
     let editCar = {
-        id: $('#deleteId').val(),
+        id: $('#editId').val(),
         licensePlate: $('#editLicensePlate').val(),
         brand: $('#editBrand').val(),
         model: $('#editModel').val(),
@@ -18,6 +22,8 @@ function editCar(e) {
         yearOfManufacture: $('#editYear').val(),
         price: $('#editPrice').val()
     }
+
+    console.log("id:" + editCar.id)
 
     $.ajax({
         url: '/api/car/update',
